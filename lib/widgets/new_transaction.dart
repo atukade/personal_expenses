@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class NewTransaction extends StatefulWidget {
   final Function addTx;
 
@@ -19,10 +18,11 @@ class _NewTransactionState extends State<NewTransaction> {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0)
-      return;
+    if (enteredTitle.isEmpty || enteredAmount <= 0) return;
 
     widget.addTx(enteredTitle, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -46,7 +46,7 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             FlatButton(
               child: Text('Add Transaction'),
-              textColor: Colors.purple,
+              textColor: Theme.of(context).primaryColor,
               onPressed: submitData,
             )
           ],
